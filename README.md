@@ -3,7 +3,7 @@ k8s-python-operator-example
 Kubernetes operator written in Python.
 
 * «[Writing a Kubernetes Operator in Python without frameworks and SDK](https://medium.com/flant-com/kubernetes-operator-in-python-451f2d2e33f3)».
-* Russian version: «[Kubernetes Operator на Python без фреймворков и SDK](https://habr.com/ru/company/flant/blog/459320/)».
+* [无需框架和SDK！使用Python来写一个Kubernetes Operator](http://dockerone.com/article/9248)
 
 
 #### Launching the operator
