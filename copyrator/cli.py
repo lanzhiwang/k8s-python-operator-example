@@ -42,6 +42,8 @@ def main():
     args = parser.parse_args()
     try:
         specs = load_crd(args.namespace, args.rule_name)
+        # args.namespace default: default
+        # args.rule_name default: main-rule
         handle(specs)
 
     except KeyboardInterrupt:

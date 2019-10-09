@@ -10,12 +10,14 @@ __all__ = [
     'handle',
 ]
 
-
+# v1 = kubernetes.client.CoreV1Api()
+# {'ruleType': 'configmap', 'selector': {'copyrator': 'true'}, 'namespace': ['default']}
+# for event in w.stream(func, _request_timeout=60):
 def handle_event(v1, specs, event):
     """
     The method for processing one Kubernetes event.
     """
-    if event['type'] not in ALLOWED_EVENT_TYPES:
+    if event['type'] not in ALLOWED_EVENT_TYPES:  # ALLOWED_EVENT_TYPES = {'ADDED', 'UPDATED'}
         return
 
     object_ = event['object']
@@ -48,6 +50,7 @@ def handle_event(v1, specs, event):
         )(v1)
 
 
+# {'ruleType': 'configmap', 'selector': {'copyrator': 'true'}, 'namespace': ['default']}
 def handle(specs):
     """
     The main method to initiate events processing via operator.
@@ -56,7 +59,7 @@ def handle(specs):
     v1 = kubernetes.client.CoreV1Api()
 
     # Get the method to watch the objects
-    method = getattr(v1, LIST_TYPES_MAP[specs['ruleType']])
+    method = getattr(v1, LIST_TYPES_MAP[specs['ruleType']])  # list_namespaced_config_map
     func = partial(method, specs['namespace'])
 
     w = kubernetes.watch.Watch()

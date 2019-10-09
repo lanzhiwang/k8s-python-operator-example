@@ -16,10 +16,13 @@ def load_crd(namespace, name):
     custom_api = kubernetes.client.CustomObjectsApi(client)
 
     crd = custom_api.get_namespaced_custom_object(
-        CRD_GROUP,
-        CRD_VERSION,
-        namespace,
-        CRD_PLURAL,
-        name,
+        CRD_GROUP,  # flant.com
+        CRD_VERSION,  # v1
+        namespace,  # default
+        CRD_PLURAL,  # copyrators
+        name,  # main-rule
     )
+
+    # {'ruleType': 'configmap', 'selector': {'copyrator': 'true'}, 'namespace': ['default']}
     return {x: crd[x] for x in ('ruleType', 'selector', 'namespace')}
+
